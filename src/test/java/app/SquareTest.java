@@ -8,9 +8,10 @@ class SquareTest
 {
 
 	@ Test
-	void test()
+	void testCalculateArea()
 	{
-		int actual = new Square(2).calculateArea();
+		Square square = new Square(2);
+		int actual = square.calculateArea();
 		int expected = 4;
 		assertEquals(expected,actual);
 	}
