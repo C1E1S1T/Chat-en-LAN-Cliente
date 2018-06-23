@@ -18,7 +18,7 @@ public class SendController extends Controller
 		}
 		catch (IOException exception)
 		{
-			this.handleError(exception);
+			this.handle(exception);
 		}
 	}
 
@@ -35,7 +35,7 @@ public class SendController extends Controller
 			}
 			catch (IOException e)
 			{
-				this.handleError(e);
+				this.handle(e);
 			}
 		}
 	}

@@ -6,12 +6,10 @@ import org.apache.logging.log4j.Logger;
 public class Controller
 {
 
-	
-
-	public void handleError(Exception exception)
+	public void handle(Exception exception)
 	{
 		Logger logger = LogManager.getLogger(this.getClass().getName());
 		logger.error(exception.getMessage(), exception);
 	}
-	
+
 }
