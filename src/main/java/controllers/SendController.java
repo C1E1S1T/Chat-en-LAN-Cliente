@@ -30,21 +30,7 @@ public class SendController extends Controller
 			try
 			{
 				objectStream = new ObjectOutputStream(stream);
-			}
-			catch (IOException e)
-			{
-				this.handleError(e);
-			}
-			try
-			{
 				objectStream.writeObject(data);
-			}
-			catch (IOException e)
-			{
-				this.handleError(e);
-			}
-			try
-			{
 				objectStream.close();
 			}
 			catch (IOException e)
