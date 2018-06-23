@@ -1,18 +1,20 @@
 package app;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class SquareTest
+import app.Square;
+
+public class SquareTest
 {
 
 	@ Test
-	void testCalculateArea()
+	public void test()
 	{
-		Square square = new Square(2);
+		Square square = new Square(4);
 		int actual = square.calculateArea();
-		int expected = 4;
+		int expected = 16;
 		assertEquals(expected,actual);
 	}
 
