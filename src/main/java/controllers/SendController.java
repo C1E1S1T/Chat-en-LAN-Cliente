@@ -5,7 +5,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-public class SendController
+public class SendController extends Controller
 {
 
 	private OutputStream stream;
@@ -16,9 +16,9 @@ public class SendController
 		{
 			this.stream = server.getOutputStream();
 		}
-		catch (IOException e)
+		catch (IOException exception)
 		{
-			e.printStackTrace();
+			this.handleError(exception);
 		}
 	}
 
@@ -33,7 +33,7 @@ public class SendController
 			}
 			catch (IOException e)
 			{
-				e.printStackTrace();
+				this.handleError(e);
 			}
 			try
 			{
@@ -41,7 +41,7 @@ public class SendController
 			}
 			catch (IOException e)
 			{
-				e.printStackTrace();
+				this.handleError(e);
 			}
 			try
 			{
@@ -49,7 +49,7 @@ public class SendController
 			}
 			catch (IOException e)
 			{
-				e.printStackTrace();
+				this.handleError(e);
 			}
 		}
 	}
