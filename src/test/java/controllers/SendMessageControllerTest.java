@@ -16,6 +16,7 @@ import models.Data;
 
 public class SendMessageControllerTest
 {
+	
 	@ Rule
 	public ExpectedException exception = ExpectedException.none();
 
