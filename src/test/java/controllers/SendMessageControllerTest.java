@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.net.UnknownHostException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,8 @@ public class SendMessageControllerTest
 	}
 
 	@ Test
-	public void testSend_caseValidTextAnd() throws IOException, ClassNotFoundException
+	public void testSend_caseValidTextAndValidDestiny()
+	               throws IOException, ClassNotFoundException
 	{
 		Data expected = new Data("Hola", "localhost");
 		writer.send(expected);
@@ -33,20 +35,27 @@ public class SendMessageControllerTest
 	}
 
 	@ Test
-	public void testSend_caseNotValidText() throws IOException, ClassNotFoundException
+	public void testSend_caseNotValidTextAndValidDestiny()
+	               throws IOException, ClassNotFoundException
 	{
 		Data expected = new Data("", "localhost");
 		writer.send(expected);
 		Object actual = deserialize(socket.getStream().toByteArray());
 		assertTrue(expected.equals(actual));
 	}
-	
-	private static Object deserialize(byte[] bytes)
-	               throws IOException, ClassNotFoundException
+
+	@ Test (expected = UnknownHostException.class)
+	public void testSend_caseValidTextAndNotValidDestiny() throws UnknownHostException
 	{
-		ByteArrayInputStream b = new ByteArrayInputStream(bytes);
-		ObjectInputStream o = new ObjectInputStream(b);
-		return o.readObject();
+		Data expected = new Data("Hola", "otro");
+		writer.send(expected);
+	}
+
+	private Object deserialize(byte[] bytes) throws IOException, ClassNotFoundException
+	{
+		ByteArrayInputStream stream = new ByteArrayInputStream(bytes);
+		ObjectInputStream objecteStream = new ObjectInputStream(stream);
+		return objecteStream.readObject();
 	}
 
 }
