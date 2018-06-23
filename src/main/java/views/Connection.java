@@ -2,6 +2,9 @@ package views;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import presenters.ConnectionPresenter;
+
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -13,6 +16,8 @@ public class Connection extends JPanel
 	private static final String TITLE_BTN_CONNECT = "Conectar";
 	private static final long serialVersionUID = 3443638124303488834L;
 	private JTextField txtHostName;
+	private JButton btnConnect;
+
 
 	/**
 	 * Create the panel.
@@ -35,13 +40,25 @@ public class Connection extends JPanel
 		add(txtHostName, gbc_txtHostName);
 		txtHostName.setColumns(10);
 		
-		JButton btnConnect = new JButton(TITLE_BTN_CONNECT);
+		btnConnect = new JButton(TITLE_BTN_CONNECT);
 		GridBagConstraints gbc_btnConnect = new GridBagConstraints();
 		gbc_btnConnect.anchor = GridBagConstraints.EAST;
 		gbc_btnConnect.gridx = 3;
 		gbc_btnConnect.gridy = 1;
 		add(btnConnect, gbc_btnConnect);
 
+		ConnectionPresenter presenter = new ConnectionPresenter(this);
+		presenter.present();
 	}
 
+	public String getHostName()
+	{
+		return txtHostName.getText();
+	}
+
+	public JButton getBtnConnect()
+	{
+		return btnConnect;
+	}
+	
 }

@@ -3,6 +3,9 @@ package views;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JTextField;
+
+import views.listeners.MessageListener;
+
 import java.awt.GridBagConstraints;
 
 public class Message extends JPanel
@@ -24,13 +27,13 @@ public class Message extends JPanel
 		setLayout(gridBagLayout);
 		
 		textField = new JTextField();
+		textField.addKeyListener(new MessageListener());
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 0;
 		gbc_textField.gridy = 1;
 		add(textField, gbc_textField);
 		textField.setColumns(10);
-
 	}
 
 }

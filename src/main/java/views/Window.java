@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 public class Window extends JFrame
 {
 
+	private static final String ROUTE_LOGO = "/views/logo.png";
 	/**
 	 * 
 	 */
@@ -18,7 +19,7 @@ public class Window extends JFrame
 	{
 		super(title);
 		setIconImage(Toolkit.getDefaultToolkit()
-		               .getImage(Window.class.getResource("/views/logo.png")));
+		               .getImage(Window.class.getResource(ROUTE_LOGO)));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 684, 376);
 		setLocationRelativeTo(null);
