@@ -54,4 +54,14 @@ public class Data implements Serializable
 		return true;
 	}
 
+	public String getMessage()
+	{
+		return message;
+	}
+
+	public InetAddress getDestiny()
+	{
+		return destiny;
+	}
+
 }
