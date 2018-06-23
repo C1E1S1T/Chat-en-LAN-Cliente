@@ -9,8 +9,9 @@ import java.util.List;
 import java.util.Observer;
 
 import models.Data;
+import utils.Log;
 
-public class ReceiverController extends Controller implements Runnable
+public class ReceiverController implements Runnable
 {
 	private static final int PORT_TO_LISTEN = 9999;
 	private Data data;
@@ -31,7 +32,7 @@ public class ReceiverController extends Controller implements Runnable
 		}
 		catch (IOException e1)
 		{
-			handle(e1);
+			Log.handle(e1, this);;
 		}
 		while (true)
 		{
@@ -46,7 +47,7 @@ public class ReceiverController extends Controller implements Runnable
 			}
 			catch (IOException|ClassNotFoundException e)
 			{
-				handle(e);
+				Log.handle(e, this);
 			}
 		}
 	}
