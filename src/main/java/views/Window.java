@@ -1,8 +1,10 @@
 package views;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
+
+import presenters.ContentPanePresenter;
+
 import java.awt.Toolkit;
 
 public class Window extends JFrame
@@ -13,7 +15,7 @@ public class Window extends JFrame
 	 * 
 	 */
 	private static final long serialVersionUID = -8517559897405623414L;
-	private JPanel contentPane;
+	private ContentPane contentPane;
 
 	public Window(String title)
 	{
@@ -26,6 +28,9 @@ public class Window extends JFrame
 		contentPane = new ContentPane();
 		contentPane.setBorder(UIManager.getBorder("List.focusCellHighlightBorder"));
 		setContentPane(contentPane);
+
+		new ContentPanePresenter(contentPane).present();
+
 	}
 
 }

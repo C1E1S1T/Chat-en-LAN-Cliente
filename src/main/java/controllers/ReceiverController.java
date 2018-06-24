@@ -16,10 +16,12 @@ public class ReceiverController implements Runnable
 	private static final int PORT_TO_LISTEN = 9999;
 	private Data data;
 	private List<Observer> observers;
+	private boolean isOpenConnection;
 
 	public ReceiverController()
 	{
 		observers = new ArrayList<>();
+		isOpenConnection = true;
 	}
 
 	@ Override
@@ -32,17 +34,15 @@ public class ReceiverController implements Runnable
 		}
 		catch (IOException e1)
 		{
-			Log.handle(e1, this);;
+			Log.handle(e1, this);
 		}
-		while (true)
+		while (isOpenConnection)
 		{
 			try
 			{
 				Socket socketReceived = serverSocket.accept();
-				ObjectInputStream stream = (ObjectInputStream) socketReceived
-				               .getInputStream();
+				ObjectInputStream stream =  new ObjectInputStream(socketReceived.getInputStream());
 				data = (Data) stream.readObject();
-				serverSocket.close();
 				this.notifyObservers(data);
 			}
 			catch (IOException|ClassNotFoundException e)
@@ -50,6 +50,20 @@ public class ReceiverController implements Runnable
 				Log.handle(e, this);
 			}
 		}
+		try
+		{
+			serverSocket.close();
+		}
+		catch (IOException e)
+		{
+			Log.handle(e, this);
+		}
+		this.notifyAll();
+	}
+
+	public void closeConnection()
+	{
+		isOpenConnection = false;
 	}
 
 	public void subscribe(Observer observer)

@@ -3,11 +3,19 @@ package views.listeners;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JOptionPane;
+
+import presenters.ContentPanePresenter;
 
 public class MessageListener implements KeyListener
 {
 
+	private ContentPanePresenter present;
+
+	public MessageListener(ContentPanePresenter presenter)
+	{
+		this.present=presenter;
+	}
+	
 	@ Override
 	public void keyPressed(KeyEvent arg0)
 	{
@@ -19,7 +27,7 @@ public class MessageListener implements KeyListener
 	{
 		if(event.getKeyCode()==KeyEvent.VK_ENTER)
 		{
-         JOptionPane.showMessageDialog(null, "Has pulsado Enter");
+         present.send();
      }
 	}
 
